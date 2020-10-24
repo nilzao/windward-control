@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p th:text="'Key: ' + ${key} + '!'"/>
+<b><p th:text="'Welcome ' + ${owner} + '!'"/></b>
+<br/>
+<div th:if="${command != null}">
+    <h1 th:text="${command}"></h1>
+</div>
+<br/>
+<form method="post">
+    <input type="hidden" value="${key}"/>
+    <input type="submit" value="Tap here to open the gate" style="width: 250px;height: 100px"/>
+</form>
+</body>
+</html>

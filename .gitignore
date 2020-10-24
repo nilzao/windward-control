@@ -33,3 +33,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#h2db
+/h2db
