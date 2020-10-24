@@ -15,19 +15,19 @@ public class KeyController {
     public String greeting(
             @PathVariable("keyHash") String keyHash,
             Model model) {
-        if (!fillModel(model, keyHash)) {
-            return "deny";
+        if (fillModel(model, keyHash)) {
+            return "greeting";
         }
-        return "greeting";
+        return "deny";
     }
 
     @RequestMapping(value = "/greeting/{keyHash}", method = RequestMethod.POST)
     public String openGate(@PathVariable String keyHash, Model model) {
-        if (!fillModel(model, keyHash)) {
-            return "deny";
+        if (fillModel(model, keyHash)) {
+            model.addAttribute("command", "Opening the gate!");
+            return "greeting";
         }
-        model.addAttribute("command", "Opening the gate!");
-        return "greeting";
+        return "deny";
     }
 
     private boolean fillModel(Model model, String keyHash) {
