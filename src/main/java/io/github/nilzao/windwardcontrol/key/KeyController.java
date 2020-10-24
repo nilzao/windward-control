@@ -1,6 +1,5 @@
 package io.github.nilzao.windwardcontrol.key;
 
-import com.pi4j.io.gpio.*;
 import io.github.nilzao.windwardcontrol.gpio.GpioImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -29,7 +28,7 @@ public class KeyController {
             try {
                 GpioImpl gpio = GpioImpl.getInstance();
                 gpio.pinoutOneHigh();
-                Thread.sleep(2000l);
+                Thread.sleep(2000L);
                 gpio.pinoutOneLow();
             } catch (Exception e) {
                 e.printStackTrace();
