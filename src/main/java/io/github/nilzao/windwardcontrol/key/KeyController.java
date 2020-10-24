@@ -1,6 +1,7 @@
 package io.github.nilzao.windwardcontrol.key;
 
 import com.pi4j.io.gpio.*;
+import io.github.nilzao.windwardcontrol.gpio.GpioImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +27,10 @@ public class KeyController {
     public String openGate(@PathVariable String keyHash, Model model) {
         if (fillModel(model, keyHash)) {
             try {
-                GpioController gpio = GpioFactory.getInstance();
-                GpioPinDigitalOutput pinOut = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01,
-                        "Gate",
-                        PinState.LOW);
-                pinOut.setShutdownOptions(true, PinState.LOW);
-                pinOut.high();
+                GpioImpl gpio = GpioImpl.getInstance();
+                gpio.pinoutOneHigh();
                 Thread.sleep(2000l);
-                pinOut.low();
+                gpio.pinoutOneLow();
             } catch (Exception e) {
                 e.printStackTrace();
             }
